@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/gericraig/Project-2#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.5"
   }
 }
