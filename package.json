@@ -17,9 +17,13 @@
   },
   "homepage": "https://github.com/gericraig/Project-2#readme",
   "dependencies": {
+    "bcrypt": "^3.0.4",
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
-    "mysql": "^2.16.0",
-    "mysql2": "^1.6.5"
+    "mysql2": "^1.6.5",
+    "sequelize": "^4.42.0",
+    "sequelize-cli": "^5.4.0"
   }
 }
