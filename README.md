@@ -2,9 +2,25 @@
 
 
 Technologies:
-express: its a very famous module used for creating web applications with nodejs
-express-session: This will help us to store and access sessions in web browsers cookies. This session is used to track which user is currently logged in.
-bcrypt: This is used to convert the user’s password to hash which we will be storing in the database rather than the real password.
-ejs: it is a view engine which we will be using to write HTML pages and with this ejs we can add node code in the pages and access variables passed down from action methods in our controllers.
-sequelize and seqeulize-cli: this is an ORM which we will be using to manage models , write migrations etc
-mysql2: this is used by our sequelize to communicate with MySQL server, which we need to store data.
+NodeJS: It's a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js(or NodeJS) uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. This will be our back-end language for this project.
+
+(Node Package Manager)NPM: It's a package manager for NodeJS.
+
+Express: It's a fast, unopinionated, minimalist web framework for NodeJS. It's undoubtedly the most-popular web framework for NodeJS which provides a robust set of features for web and mobile applications.
+
+Sequelize: Sequelize is a promise-based Node.js Object Relational Mapper(ORM) for Postgres, MySQL, SQLite and Microsoft SQL Server. It features solid transaction support, relations, read replication and more.
+
+PostgreSQL: PostgreSQL is an advanced object-relational database management system
+that supports an extended subset of the SQL standard, including
+transactions, foreign keys, subqueries, triggers, user-defined types
+and functions.
+
+Body-Parser: It's a body parsing middleware which allows you to parse incoming request bodies in a middleware before your handlers, available under the req.body property.
+
+Cookie-Parser: It's a cookie parsing middleware which allows you to parse Cookie header and populate req.cookies with an object keyed by the cookie names.
+
+Express-Session: It's a simple session middleware for Express which allows you to manage sessions in your NodeJS-Express applications.
+
+Bcrypt: It's a NodeJS package that allows us to hash passwords for security purposes.
+
+Morgan: It's a HTTP request logger middleware for NodeJS, which allows you to print information about your request on the command line.
