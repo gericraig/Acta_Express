@@ -1,0 +1,12 @@
+<% layout('layout') -%>
+
+<h1>Hi, Welcome to your Dashboard</h1>
+<h2>Here are your recent entries</h2>
+<ul>
+    <% entrees.forEach(function(entree) { %>
+        <li>
+            <%= entree.content %><br />
+            <i>Entered on: <%= entree.createdAt %></i>
+        </li>
+    <% }) %>
+</ul>

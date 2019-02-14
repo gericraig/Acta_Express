@@ -1,12 +1,23 @@
 var express = require('express');
+var engine = require('ejs-locals');
+var path = require('path');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var morgan = require('morgan');
+var Sequelize = require('sequelize');
+// create a sequelize instance with our local postgres database information.
+var sequelize = new Sequelize('postgres://postgres@localhost:5432/auth-system');
 var User = require('./models/user');
+var Entree = require('./models/entree');
 
 // invoke an instance of express application.
 var app = express();
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.engine('ejs', engine);
+app.set('view engine', 'ejs');
 
 // set our application port
 app.set('port', 9000);
@@ -52,37 +63,22 @@ var sessionChecker = (req, res, next) => {
 };
 
 
-// route for Home-Page
-app.get('/', sessionChecker, (req, res) => {
-    res.redirect('/login');
-});
-
-
-// route for user signup
-app.route('/signup')
-    .get(sessionChecker, (req, res) => {
-        res.sendFile(__dirname + '/public/signup.html');
-    })
-    .post((req, res) => {
-        User.create({
-            username: req.body.username,
-            email: req.body.email,
-            password: req.body.password
+app.get('/dashboard', function(req, res, next) {
+    if (req.session.user && req.cookies.user_sid) {
+        Entree.findAll({
+            where: {userid: req.session.user.id}
         })
-        .then(user => {
-            req.session.user = user.dataValues;
-            res.redirect('/dashboard');
-        })
-        .catch(error => {
-            res.redirect('/signup');
+            .then(function (entrees) {
+            res.render('dashboard', {title: 'Dashboard', heading: 'Dashboard', entrees: entrees});
         });
-    });
-
+    }
+    else { res.redirect('/login'); }
+});
 
 // route for user Login
 app.route('/login')
     .get(sessionChecker, (req, res) => {
-        res.sendFile(__dirname + '/public/login.html');
+        res.render('login', { title: 'Login', heading: 'Login' });
     })
     .post((req, res) => {
         var username = req.body.username,
@@ -100,16 +96,54 @@ app.route('/login')
         });
     });
 
+app.route('/signup')
+    .get(sessionChecker, (req, res) => {
+        res.render('signup', { title: 'ACTA - Signup', heading: 'Signup' });
+    })
+    .post((req, res) => {
+        User.create({
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password
+        })
+            .then(user => {
+                req.session.user = user.dataValues;
+                res.redirect('/dashboard');
+            })
+            .catch(error => {
+                res.redirect('/signup');
+            });
+    });
 
-// route for user's dashboard
-app.get('/dashboard', (req, res) => {
+
+app.get('/add', function(req, res, next) {
     if (req.session.user && req.cookies.user_sid) {
-        res.sendFile(__dirname + '/public/dashboard.html');
-    } else {
-        res.redirect('/login');
+        res.render('add', {title: 'Add', heading: 'Add'});
     }
+    else { res.redirect('/login'); }
 });
 
+app.post('/add', function(req, res, next) {
+    if (req.session.user && req.cookies.user_sid) {
+        Entree.create({
+            userid: req.session.user.id,
+            content: req.body.content
+        })
+            .then(user => {
+                res.redirect('/dashboard');
+            })
+            .catch(error => {
+                console.warn(error);
+                res.redirect('/signup');
+            });
+    }
+    else { res.redirect('/login'); }
+});
+
+// route for Home-Page
+app.get('/', sessionChecker, (req, res) => {
+    res.redirect('/login');
+});
 
 // route for user logout
 app.get('/logout', (req, res) => {
@@ -121,12 +155,10 @@ app.get('/logout', (req, res) => {
     }
 });
 
-
 // route for handling 404 requests(unavailable routes)
 app.use(function (req, res, next) {
   res.status(404).send("Sorry can't find that!")
 });
-
 
 // start the express server
 app.listen(app.get('port'), () => console.log(`App started on port ${app.get('port')}`));

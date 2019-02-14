@@ -1,8 +1,8 @@
 var Sequelize = require('sequelize');
-var bcrypt = require('bcrypt');
-
 // create a sequelize instance with our local postgres database information.
 var sequelize = new Sequelize('postgres://postgres@localhost:5432/auth-system');
+
+var bcrypt = require('bcrypt');
 
 // setup User model and its fields.
 var User = sequelize.define('users', {
