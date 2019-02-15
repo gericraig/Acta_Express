@@ -1,10 +1,10 @@
 # Acta
-Description
+*Description:*
 This application is a journal where users can record their after surgery progress, and where a medical perfessional can review it daily and see how the patient is doing post surgery and if they are healing as expected
 
 
 
-Technologies:
+*Technologies:*
 NodeJS: It's a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js(or NodeJS) uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. This will be our back-end language for this project.
 
 (Node Package Manager)NPM: It's a package manager for NodeJS.
