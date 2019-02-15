@@ -20,7 +20,7 @@ app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 
 // set our application port
-app.set('port', 9000);
+app.set('port', 80);
 
 // set morgan to log info about our requests for development use.
 app.use(morgan('dev'));
