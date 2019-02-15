@@ -21,6 +21,5 @@ Cookie-Parser: It's a cookie parsing middleware which allows you to parse Cookie
 
 Express-Session: It's a simple session middleware for Express which allows you to manage sessions in your NodeJS-Express applications.
 
-Bcrypt: It's a NodeJS package that allows us to hash passwords for security purposes.
 
 Morgan: It's a HTTP request logger middleware for NodeJS, which allows you to print information about your request on the command line.
