@@ -1,4 +1,7 @@
-# Medical_Diary
+# Acta
+Description
+This application is a journal where users can record their after surgery progress, and where a medical perfessional can review it daily and see how the patient is doing post surgery and if they are healing as expected
+
 
 
 Technologies:
