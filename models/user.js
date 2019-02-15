@@ -21,12 +21,8 @@ var User = sequelize.define('users', {
   }
 }, {
   hooks: {
-    beforeCreate: (user) => {
-      user.password = user.password, salt;
-    }
   },
 });
-
 
 // create all the defined tables in the specified database.
 sequelize.sync()
