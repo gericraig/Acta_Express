@@ -7,7 +7,7 @@ var session = require('express-session');
 var morgan = require('morgan');
 var Sequelize = require('sequelize');
 // create a sequelize instance with our local postgres database information.
-var sequelize = new Sequelize('postgres://postgres@localhost:5432/auth-system');
+var sequelize = new Sequelize('postgres://postgres@localhost:5432/hobby-dev');
 var User = require('./models/user');
 var Entree = require('./models/entree');
 
